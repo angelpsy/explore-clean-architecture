@@ -24,9 +24,7 @@ export default function RootLayout({
         suppressHydrationWarning={IS_DEV}
       >
         <nav className="bg-gray-800 grow-0">
-          <ul
-            className="mx-auto w-full max-w-2xl h-16 flex space-x-4 justify-center items-center"
-          >
+          <ul className="mx-auto w-full max-w-2xl h-16 flex space-x-4 justify-center items-center">
             <li className="mr-auto">
               <Link href="/">home</Link>
             </li>

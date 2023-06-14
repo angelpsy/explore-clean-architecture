@@ -3,6 +3,7 @@ import { TTODO } from '@/../types/helper';
 import React, { FormEvent, useState } from 'react';
 import UIInput from '../ui/input';
 import UITextarea from '../ui/textarea';
+import UIButton from '../ui/button';
 
 type TProps = {
   post?: TPost;
@@ -70,7 +71,7 @@ export default function PostForm({ post, onSubmit }: TProps) {
           id="post-content"
           rows={8}
           value={formValues.content}
-          placeholder='Content...'
+          placeholder="Content..."
           onChangeField={(value) => {
             handlerChangeField('content', value);
           }}
@@ -85,9 +86,9 @@ export default function PostForm({ post, onSubmit }: TProps) {
           Excerpt of post
         </label>
         <UITextarea
-          id='excerpt'
+          id="excerpt"
           rows={5}
-          placeholder='Excerpt...'
+          placeholder="Excerpt..."
           value={formValues.excerpt}
           onChangeField={(value) => {
             handlerChangeField('excerpt', value);
@@ -95,12 +96,7 @@ export default function PostForm({ post, onSubmit }: TProps) {
         />
       </div>
       <div className="flex justify-end">
-        <button
-          className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center rounded-lg focus:ring-4 bg-blue-700 focus:ring-blue-900 hover:bg-blue-900"
-          type="submit"
-        >
-          {isCreationForm ? 'Add' : 'Update'}
-        </button>
+        <UIButton type="submit">{isCreationForm ? 'Add' : 'Update'}</UIButton>
       </div>
     </form>
   );
