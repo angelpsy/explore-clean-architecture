@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import { TPropsClassNames } from '@/types/helpers';
 
 type TPops = TPropsClassNames & {
-  id: string;
+  id?: string;
   rows?: number;
-  placeholder: string;
-  value: string;
-  onChangeField(value: string): void;
+  placeholder?: string;
+  value?: string;
+  onChangeField?(value: string): void;
 };
 
 export default function UITextarea({
@@ -28,7 +28,7 @@ export default function UITextarea({
       placeholder={placeholder}
       value={value}
       onChange={(e) => {
-        onChangeField(e.target.value);
+        onChangeField && onChangeField(e.target.value);
       }}
     ></textarea>
   );
