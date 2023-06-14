@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import { TPropsClassNames } from '@/types/helpers';
 
-type TProps = TPropsClassNames & {
+type TProps = React.HTMLAttributes<HTMLButtonElement> & TPropsClassNames & {
   type?: 'submit' | 'button';
   children: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export default function UIButton({
@@ -13,7 +14,7 @@ export default function UIButton({
   className,
   onClick,
   ...props
-}: TProps & React.HTMLAttributes<HTMLButtonElement>) {
+}: TProps) {
   return (
     <button
       className={classNames(
