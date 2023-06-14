@@ -3,8 +3,8 @@ import PageView from './view';
 import { usePosts } from '@/hooks/posts.universal';
 
 type TProps = {
-  searchParams?: Record<string, TTODO>,
-}
+  searchParams?: Record<string, TTODO>;
+};
 
 export default async function PostsPage(props: TProps) {
   const filter = props?.searchParams || {};

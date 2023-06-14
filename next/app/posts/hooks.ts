@@ -7,7 +7,11 @@ export const useFilter = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const handlerChangeFilter = (field: string, value: TTODO, currentFilter: Record<string, TTODO>) => {
+  const handlerChangeFilter = (
+    field: string,
+    value: TTODO,
+    currentFilter: Record<string, TTODO>
+  ) => {
     const filter = {
       ...currentFilter,
       [field]: value,
@@ -24,6 +28,6 @@ export const useFilter = () => {
   };
 
   return {
-    handlerChangeFilter
+    handlerChangeFilter,
   };
-}
+};

@@ -10,5 +10,5 @@ export type TSingletone<T> = {
 };
 
 export type TPrettify<T> = {
-  [K in keyof T]: T[K]
+  [K in keyof T]: T[K];
 } & {};

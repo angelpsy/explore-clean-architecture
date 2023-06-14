@@ -14,9 +14,9 @@ export const useEditPost = (data: TPost) => {
 
   const { updatePost } = usePosts();
   const handlerUpdatePost = async (data: {
-    title: TPost['title'],
-    content: TPost['content'],
-    excerpt: TPost['excerpt'],
+    title: TPost['title'];
+    content: TPost['content'];
+    excerpt: TPost['excerpt'];
   }) => {
     const updatedPost = await updatePost(post.id, {
       ...data,
@@ -27,5 +27,5 @@ export const useEditPost = (data: TPost) => {
   return {
     post,
     handlerUpdatePost,
-  }
+  };
 };

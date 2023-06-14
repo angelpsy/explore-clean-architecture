@@ -4,7 +4,7 @@ import PageView from './view';
 type TProps = {
   params: {
     id: string;
-  }
+  };
 };
 
 export default async function EditPage({ params: { id } }: TProps) {
@@ -12,10 +12,8 @@ export default async function EditPage({ params: { id } }: TProps) {
   const postDatga = await fetchPostById(id);
 
   if (postDatga === null) {
-    return (404);
+    return 404;
   }
 
-  return <PageView
-    data={postDatga}
-  />;
+  return <PageView data={postDatga} />;
 }

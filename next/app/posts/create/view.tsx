@@ -10,9 +10,9 @@ export default function CreatePostPageView() {
 
   const { createPost } = usePosts();
   const handlerCreatePost = async (data: {
-    title: TPost['title'],
-    content: TPost['content'],
-    excerpt: TPost['excerpt'],
+    title: TPost['title'];
+    content: TPost['content'];
+    excerpt: TPost['excerpt'];
   }) => {
     const createdPost = await createPost({
       ...data,
@@ -20,9 +20,5 @@ export default function CreatePostPageView() {
     setPost(createdPost);
   };
 
-  return (
-    <PostForm
-      onSubmit={handlerCreatePost}
-    />
-  );
+  return <PostForm onSubmit={handlerCreatePost} />;
 }

@@ -13,8 +13,8 @@ export class PostService {
     private updatePostUseCase: UpdatePostUseCaseImpl,
     private deletePostUseCase: DeletePostUseCaseImpl,
     private getPostByIdUseCase: GetPostByIdUseCase,
-    private getPostsUseCase: GetPostsUseCaseImpl,
-  ) { }
+    private getPostsUseCase: GetPostsUseCaseImpl
+  ) {}
 
   async createPost(data: TCreatePostData): Promise<TPost> {
     return this.createPostUseCase.execute(data);
@@ -35,4 +35,4 @@ export class PostService {
   async getPosts(): Promise<TPost[]> {
     return this.getPostsUseCase.execute();
   }
-};
+}

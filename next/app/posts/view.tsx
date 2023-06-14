@@ -18,17 +18,14 @@ export default function PageView({
 
   const onChangeFilter = (fieldName: string, value: TTODO) => {
     handlerChangeFilter(fieldName, value, defaultFilter);
-  }
+  };
 
   return (
     <div>
-      <h2 className='text-3xl font-bold tracking-tight sm:text-4xl'>Filters</h2>
-      <PostsFilter
-        filter={defaultFilter}
-        onChangeFilter={onChangeFilter}
-      />
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Filters</h2>
+      <PostsFilter filter={defaultFilter} onChangeFilter={onChangeFilter} />
 
-      <h2 className='text-3xl font-bold tracking-tight sm:text-4xl'>Posts</h2>
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Posts</h2>
       <PostsList posts={posts} />
     </div>
   );

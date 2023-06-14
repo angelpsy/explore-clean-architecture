@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  "transpilePackages": ["../app"]
-}
+  transpilePackages: ['../app'],
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
