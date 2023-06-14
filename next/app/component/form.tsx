@@ -1,6 +1,7 @@
 import { TPost } from '@/../domain/entities/post';
 import { TTODO } from '@/../types/helper';
 import React, { FormEvent, useState } from 'react';
+import UIInput from '../ui/input';
 
 type TProps = {
   post?: TPost;
@@ -47,15 +48,12 @@ export default function PostForm({ post, onSubmit }: TProps) {
         >
           Title of post
         </label>
-        <input
-          type="text"
+        <UIInput
           id="title"
-          aria-describedby="helper-text-explanation"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Title..."
           value={formValues.title}
-          onChange={(e) => {
-            handlerChangeField('title', e.target.value);
+          onChange={(value) => {
+            handlerChangeField('title', value);
           }}
         />
       </div>
