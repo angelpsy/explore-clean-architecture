@@ -2,6 +2,7 @@ import { TPost } from '@/../domain/entities/post';
 import { TTODO } from '@/../types/helper';
 import React, { FormEvent, useState } from 'react';
 import UIInput from '../ui/input';
+import UITextarea from '../ui/textarea';
 
 type TProps = {
   post?: TPost;
@@ -65,16 +66,15 @@ export default function PostForm({ post, onSubmit }: TProps) {
         >
           Content of post
         </label>
-        <textarea
+        <UITextarea
           id="post-content"
           rows={8}
-          className="block p-2.5 w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Content..."
           value={formValues.content}
-          onChange={(e) => {
-            handlerChangeField('content', e.target.value);
+          placeholder='Content...'
+          onChangeField={(value) => {
+            handlerChangeField('content', value);
           }}
-        ></textarea>
+        />
       </div>
 
       <div className="flex flex-col">
@@ -84,16 +84,15 @@ export default function PostForm({ post, onSubmit }: TProps) {
         >
           Excerpt of post
         </label>
-        <textarea
-          id="excerpt"
+        <UITextarea
+          id='excerpt'
           rows={5}
-          className="block p-2.5 w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Excerpt..."
+          placeholder='Excerpt...'
           value={formValues.excerpt}
-          onChange={(e) => {
-            handlerChangeField('excerpt', e.target.value);
+          onChangeField={(value) => {
+            handlerChangeField('excerpt', value);
           }}
-        ></textarea>
+        />
       </div>
       <div className="flex justify-end">
         <button
