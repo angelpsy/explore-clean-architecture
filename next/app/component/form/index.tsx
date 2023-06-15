@@ -1,9 +1,10 @@
 import { TPost } from '@/../domain/entities/post';
 import { TTODO } from '@/../types/helper';
 import React, { FormEvent, useState } from 'react';
-import UIInput from '../ui/input';
-import UITextarea from '../ui/textarea';
-import UIButton from '../ui/button';
+import UIInput from '../../ui/input';
+import UITextarea from '../../ui/textarea';
+import UIButton from '../../ui/button';
+import { error } from 'console';
 
 type TProps = {
   post?: TPost;
@@ -27,29 +28,74 @@ export default function PostForm({ post, onSubmit }: TProps) {
     excerpt: post?.excerpt || '',
   });
 
+  const [formErrors, setFormErrors] = useState<{
+    title: string;
+    content: string;
+    excerpt: string;
+  }>({
+    title: '',
+    content: '',
+    excerpt: '',
+  });
+
   const handlerSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Validate form fields
+    const errors = validateForm();
+    if (Object.values(errors).some((error) => error !== '')) {
+      setFormErrors(errors);
+      return;
+    }
+
     await onSubmit(formValues);
   };
 
   const handlerChangeField = (fieldName: string, value: TTODO) => {
     setFormValues((val) => ({
-      title: val.title,
-      content: val.content,
-      excerpt: val.excerpt,
+      ...val,
       [fieldName]: value,
     }));
+    setFormErrors((errors) => ({
+      ...errors,
+      [fieldName]: '',
+    }));
+  };
+
+  const validateForm = () => {
+    const errors: { [key: string]: string } = {};
+    const { title, content, excerpt } = formValues;
+
+    if (!title.trim()) {
+      errors.title = 'Title is required.';
+    }
+
+    if (!content.trim()) {
+      errors.content = 'Content is required.';
+    }
+
+    if (!excerpt.trim()) {
+      errors.excerpt = 'Excerpt is required.';
+    }
+
+    return errors;
+  };
+
+  const renderLabel = (id: string, label: string) => (
+    <label htmlFor={id} className="block mb-2 text-sm font-medium text-white">
+      {label}
+    </label>
+  );
+
+  const renderError = (error: string) => {
+    if (!error) return null;
+    return <span className="text-red-500 text-sm mb-1">{error}</span>;
   };
 
   return (
     <form onSubmit={handlerSubmitForm} className="flex flex-col gap-4">
       <div className="flex flex-col">
-        <label
-          htmlFor="title"
-          className="block mb-2 text-sm font-medium text-white"
-        >
-          Title of post
-        </label>
+        {renderLabel('title', 'Title of post')}
         <UIInput
           id="title"
           placeholder="Title..."
@@ -58,15 +104,11 @@ export default function PostForm({ post, onSubmit }: TProps) {
             handlerChangeField('title', value);
           }}
         />
+        {renderError(formErrors.title)}
       </div>
 
       <div className="flex flex-col">
-        <label
-          htmlFor="post-content"
-          className="block mb-2 text-sm font-medium text-white"
-        >
-          Content of post
-        </label>
+        {renderLabel('post-content', 'Content of post')}
         <UITextarea
           id="post-content"
           rows={8}
@@ -76,15 +118,11 @@ export default function PostForm({ post, onSubmit }: TProps) {
             handlerChangeField('content', value);
           }}
         />
+        {renderError(formErrors.content)}
       </div>
 
       <div className="flex flex-col">
-        <label
-          htmlFor="excerpt"
-          className="block mb-2 text-sm font-medium text-white"
-        >
-          Excerpt of post
-        </label>
+        {renderLabel('excerpt', 'Excerpt of post')}
         <UITextarea
           id="excerpt"
           rows={5}
@@ -94,7 +132,9 @@ export default function PostForm({ post, onSubmit }: TProps) {
             handlerChangeField('excerpt', value);
           }}
         />
+        {renderError(formErrors.excerpt)}
       </div>
+
       <div className="flex justify-end">
         <UIButton type="submit">{isCreationForm ? 'Add' : 'Update'}</UIButton>
       </div>

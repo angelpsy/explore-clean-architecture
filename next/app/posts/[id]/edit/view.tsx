@@ -1,10 +1,5 @@
 'use client';
-import { FormEvent, useState } from 'react';
-
-import { usePosts } from '@/hooks/posts.universal';
-
 import { TPost } from '@/../domain/entities/post';
-import { TPrettify, TTODO } from '@/../types/helper';
 import Link from 'next/link';
 import PostForm from '@/app/component/form';
 import { useEditPost } from './hooks';
