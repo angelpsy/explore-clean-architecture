@@ -10,7 +10,7 @@ import { TData } from '../../types/helper';
 export class PostRepositoryRealtime implements TPostRepository {
   private items: TPost[] = [];
   private static instance: PostRepositoryRealtime;
-  constructor() { }
+  constructor() {}
   findByFilter(): Promise<TPost[]> {
     return Promise.resolve(this.items);
   }

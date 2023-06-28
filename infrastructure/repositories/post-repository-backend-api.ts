@@ -9,7 +9,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export class PostRepositoryBackend implements TPostRepository {
   static instance: PostRepositoryBackend;
-  constructor() { }
+  constructor() {}
   async findById(id: TPost['id']): Promise<TPost | null> {
     const res = await fetch(`${BASE_URL}/posts/${id}`, {
       cache: 'no-store',

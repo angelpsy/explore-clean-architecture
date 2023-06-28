@@ -1,4 +1,7 @@
-import { TPostRepositorySaveDate, TPostRepositoryUpdateDate } from '@/../domain/repositories/post-repository';
+import {
+  TPostRepositorySaveDate,
+  TPostRepositoryUpdateDate,
+} from '@/../domain/repositories/post-repository';
 import { getPostRepositoryRealtimeInstance } from '@/helpers/post-repository-realtime-instance';
 import { NextResponse } from 'next/server';
 
@@ -7,16 +10,19 @@ export async function GET() {
     const postRepositoryInstance = await getPostRepositoryRealtimeInstance();
     const posts = await postRepositoryInstance.findByFilter();
     const data = {
-      items: posts
+      items: posts,
     };
-    return NextResponse.json({ data })
+    return NextResponse.json({ data });
   } catch (error) {
-    return NextResponse.json({
-      error: (error as Error).message || 'some wrong',
-    }, {
-      status: 504,
-      statusText: (error as Error).message || 'some wrong',
-    });
+    return NextResponse.json(
+      {
+        error: (error as Error).message || 'some wrong',
+      },
+      {
+        status: 504,
+        statusText: (error as Error).message || 'some wrong',
+      }
+    );
   }
 }
 

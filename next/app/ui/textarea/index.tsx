@@ -23,7 +23,7 @@ export default function UITextarea({
       rows={rows}
       className={classNames(
         className,
-        'block p-2.5 w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
+        'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500'
       )}
       placeholder={placeholder}
       value={value}

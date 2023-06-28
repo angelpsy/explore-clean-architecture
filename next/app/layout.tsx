@@ -23,8 +23,8 @@ export default function RootLayout({
         className={classNames(inter.className, 'flex flex-col')}
         suppressHydrationWarning={IS_DEV}
       >
-        <nav className="bg-gray-800 grow-0">
-          <ul className="mx-auto w-full max-w-2xl h-16 flex space-x-4 justify-center items-center">
+        <nav className="grow-0 bg-gray-800">
+          <ul className="mx-auto flex h-16 w-full max-w-2xl items-center justify-center space-x-4">
             <li className="mr-auto">
               <Link href="/">home</Link>
             </li>
@@ -36,7 +36,7 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <main className="flex flex-col mx-auto grow w-full max-w-2xl pt-4 format format-sm sm:format-base lg:format-lg">
+        <main className="format format-sm sm:format-base lg:format-lg mx-auto flex w-full max-w-2xl grow flex-col pt-4">
           {children}
         </main>
       </body>

@@ -10,7 +10,7 @@ type TProps = {
 
 export default async function PostByIdPage({ params: { id } }: TProps) {
   const { fetchPostById } = usePosts();
-  const postDatga = await fetchPostById(id) as TPost; // TODO add handling for 404
+  const postDatga = (await fetchPostById(id)) as TPost; // TODO add handling for 404
 
   return <PageView data={postDatga} />;
 }

@@ -84,14 +84,14 @@ export default function PostForm({ post, onSubmit }: TProps) {
   };
 
   const renderLabel = (id: string, label: string) => (
-    <label htmlFor={id} className="block mb-2 text-sm font-medium text-white">
+    <label htmlFor={id} className="mb-2 block text-sm font-medium text-white">
       {label}
     </label>
   );
 
   const renderError = (error: string) => {
     if (!error) return null;
-    return <span className="text-red-500 text-sm mb-1">{error}</span>;
+    return <span className="mb-1 text-sm text-red-500">{error}</span>;
   };
 
   return (

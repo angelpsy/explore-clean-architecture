@@ -33,7 +33,7 @@ export default function PageView({ data }: TProps) {
               <div className="flex items-center">
                 <svg
                   aria-hidden="true"
-                  className="w-6 h-6 text-gray-400"
+                  className="h-6 w-6 text-gray-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ export default function PageView({ data }: TProps) {
                 </svg>
                 <Link
                   href="/posts"
-                  className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                  className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ml-2"
                 >
                   Posts
                 </Link>
@@ -55,7 +55,7 @@ export default function PageView({ data }: TProps) {
           </ol>
         </nav>
       </div>
-      <article className="flex flex-col grow">
+      <article className="flex grow flex-col">
         <h1 className="mb-4 text-3xl font-extrabold leading-tight lg:mb-6 lg:text-4xl">
           {data.title}
         </h1>
@@ -74,7 +74,7 @@ export default function PageView({ data }: TProps) {
               className="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <span>Change post</span>
-              <PencilIcon className="w-4 h-4 ml-2" />
+              <PencilIcon className="ml-2 h-4 w-4" />
             </Link>
           </div>
         </footer>
