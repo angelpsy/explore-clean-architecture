@@ -7,13 +7,10 @@ import {
 } from '../../domain/repositories/post-repository';
 import { TData } from '../../types/helper';
 
-let instance: TPostRepository | null = null;
-
 export class PostRepositoryRealtime implements TPostRepository {
-  private items: TPost[];
-  constructor(items: TPost[] = []) {
-    this.items = items;
-  }
+  private items: TPost[] = [];
+  private static instance: PostRepositoryRealtime;
+  constructor() { }
   findByFilter(): Promise<TPost[]> {
     return Promise.resolve(this.items);
   }
@@ -53,10 +50,19 @@ export class PostRepositoryRealtime implements TPostRepository {
     this.items = this.items.filter((it) => it.id !== id);
     return Promise.resolve();
   }
-  getInstance(): TPostRepository {
-    if (!instance) {
-      instance = new PostRepositoryRealtime();
+  /**
+   * this method is used to add default post for testing
+   */
+  static addDefaultPost(items: TPost[]) {
+    const instance = PostRepositoryRealtime.getInstance();
+    if (instance.items.length === 0) {
+      instance.items = items;
     }
-    return instance;
+  }
+  public static getInstance(): PostRepositoryRealtime {
+    if (!PostRepositoryRealtime.instance) {
+      PostRepositoryRealtime.instance = new PostRepositoryRealtime();
+    }
+    return PostRepositoryRealtime.instance;
   }
 }

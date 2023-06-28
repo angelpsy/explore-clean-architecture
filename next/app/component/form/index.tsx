@@ -4,7 +4,6 @@ import React, { FormEvent, useState } from 'react';
 import UIInput from '../../ui/input';
 import UITextarea from '../../ui/textarea';
 import UIButton from '../../ui/button';
-import { error } from 'console';
 
 type TProps = {
   post?: TPost;
@@ -44,7 +43,10 @@ export default function PostForm({ post, onSubmit }: TProps) {
     // Validate form fields
     const errors = validateForm();
     if (Object.values(errors).some((error) => error !== '')) {
-      setFormErrors(errors);
+      setFormErrors({
+        ...formErrors,
+        ...errors,
+      });
       return;
     }
 

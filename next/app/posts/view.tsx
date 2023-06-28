@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { TPost } from '@/../domain/entities/post';
 import PostsList from './list';
-import { usePosts } from '@/hooks/posts.universal';
 import { TPrettify, TTODO } from '@/../types/helper';
 import PostsFilter from './filter';
 import { useFilter } from './hooks';

@@ -21,5 +21,4 @@ type TPostRepositoryBase = {
   delete(id: TPost['id']): Promise<void>;
 };
 
-export type TPostRepository = TSingletone<TPostRepositoryBase> &
-  TPostRepositoryBase;
+export type TPostRepository = TPostRepositoryBase;
