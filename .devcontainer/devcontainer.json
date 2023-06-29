@@ -10,5 +10,21 @@
       "package": "typescript",
       "version": "latest"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ckolkman.vscode-postgres",
+        "GitHub.copilot",
+        "steoates.autoimport",
+        "AmazonWebServices.aws-toolkit-vscode",
+        "dzhavat.bracket-pair-toggler",
+        "mhutchie.git-graph",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "DB_PATH": "host.docker.internal"
   }
 }
