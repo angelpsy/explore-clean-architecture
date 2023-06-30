@@ -2,6 +2,8 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import classNames from 'classnames';
+import { ThemeProvider } from '@/contexts/theme';
+import { ToggleTheme } from '@/app/component/toggle-theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,22 +25,27 @@ export default function RootLayout({
         className={classNames(inter.className, 'flex flex-col')}
         suppressHydrationWarning={IS_DEV}
       >
-        <nav className="grow-0 bg-gray-800">
-          <ul className="mx-auto flex h-16 w-full max-w-2xl items-center justify-center space-x-4">
-            <li className="mr-auto">
-              <Link href="/">home</Link>
-            </li>
-            <li>
-              <Link href="/posts">Posts</Link>
-            </li>
-            <li>
-              <Link href="/posts/create">New post</Link>
-            </li>
-          </ul>
-        </nav>
-        <main className="format format-sm sm:format-base lg:format-lg mx-auto flex w-full max-w-2xl grow flex-col pt-4">
-          {children}
-        </main>
+        <ThemeProvider>
+          <nav className="grow-0 bg-gray-800">
+            <ul className="mx-auto flex h-16 w-full max-w-2xl items-center justify-center space-x-4">
+              <li className="mr-auto">
+                <Link href="/">home</Link>
+              </li>
+              <li>
+                <ToggleTheme />
+              </li>
+              <li>
+                <Link href="/posts">Posts</Link>
+              </li>
+              <li>
+                <Link href="/posts/create">New post</Link>
+              </li>
+            </ul>
+          </nav>
+          <main className="format format-sm sm:format-base lg:format-lg mx-auto flex w-full max-w-2xl grow flex-col pt-4">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

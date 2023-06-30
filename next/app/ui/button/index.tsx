@@ -7,6 +7,7 @@ type TProps = React.HTMLAttributes<HTMLButtonElement> &
     children: React.ReactNode;
     onClick?: () => void;
     disabled?: boolean;
+    theme?: 'light' | 'dark';
   };
 
 export default function UIButton({
@@ -14,13 +15,23 @@ export default function UIButton({
   children,
   className,
   onClick,
+  theme = 'dark',
   ...props
 }: TProps) {
   return (
     <button
       className={classNames(
         className,
-        'inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium hover:bg-blue-900 focus:ring-4 focus:ring-blue-900'
+        'transition-background-color transition-300 inline-flex items-center rounded-lg px-5 py-2.5 text-center text-sm font-medium transition-colors',
+        {
+          'bg-gray-700': theme === 'dark',
+          'hover:bg-gray-900': theme === 'dark',
+          'focus:ring-gray-900': theme === 'dark',
+          'bg-gray-300': theme === 'light',
+          'hover:bg-gray-500': theme === 'light',
+          'focus:ring-gray-500': theme === 'light',
+          'text-black': theme === 'light',
+        }
       )}
       type={type}
       onClick={onClick}
