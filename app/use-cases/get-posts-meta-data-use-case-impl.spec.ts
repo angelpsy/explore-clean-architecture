@@ -1,6 +1,6 @@
-import { TPost } from '../../domain/entities/post';
+import { GetPostsMetaDataUseCaseImpl } from './get-posts-meta-data-use-case-impl';
 import { TPostRepository } from '../../domain/repositories/post-repository';
-import { GetPostsUseCaseImpl } from './get-posts-use-case-ipml';
+import { TPost } from '../../domain/entities/post';
 
 const getPosts = (): TPost[] => [
   {
@@ -21,8 +21,8 @@ const getPosts = (): TPost[] => [
   },
 ];
 
-describe('GetPostsUseCaseImpl', () => {
-  let getPostsUseCaseImpl: GetPostsUseCaseImpl;
+describe('GetPostsMetaDataUseCaseImpl', () => {
+  let getPostsMetaDataUseCaseImpl: GetPostsMetaDataUseCaseImpl;
   let repository: TPostRepository;
 
   beforeEach(() => {
@@ -34,18 +34,19 @@ describe('GetPostsUseCaseImpl', () => {
         },
       }),
     } as never as TPostRepository;
-    getPostsUseCaseImpl = new GetPostsUseCaseImpl(repository);
+    getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(repository);
   });
 
-  test('method "execute" should call "findByFilter" method of repository once', async () => {
-    await getPostsUseCaseImpl.execute();
+  it('method "execute" should call "findByFilter" method of repository once', async () => {
+    await getPostsMetaDataUseCaseImpl.execute();
     expect(repository.findByFilter).toBeCalledTimes(1);
   });
 
-  test('method "execure" should be return the result of "findByFilter" method of repository', async () => {
-    const result = await getPostsUseCaseImpl.execute();
+  it('method "execure" should be return the result of "findByFilter" method of repository', async () => {
+    const result = await getPostsMetaDataUseCaseImpl.execute();
+
     expect(result).toEqual(
-      (repository.findByFilter as any).mock.results[0].value.items
+      (repository.findByFilter as any).mock.results[0].value.metadata
     );
   });
 });

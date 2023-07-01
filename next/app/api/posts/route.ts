@@ -8,9 +8,10 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const postRepositoryInstance = await getPostRepositoryRealtimeInstance();
-    const posts = await postRepositoryInstance.findByFilter();
+    const { items, metadata } = await postRepositoryInstance.findByFilter();
     const data = {
-      items: posts,
+      items,
+      metadata,
     };
     return NextResponse.json({ data });
   } catch (error) {

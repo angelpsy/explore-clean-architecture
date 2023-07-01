@@ -5,6 +5,7 @@ import { CreatePostUseCaseImpl } from '../use-cases/create-post-use-case-ipml';
 import { DeletePostUseCaseImpl } from '../use-cases/delete-post-use-case-ipml';
 import { GetPostByIdUseCase } from '../use-cases/get-post-by-id-use-case-ipml';
 import { GetPostsUseCaseImpl } from '../use-cases/get-posts-use-case-ipml';
+import { GetPostsMetaDataUseCaseImpl } from '../use-cases/get-posts-meta-data-use-case-impl';
 import { UpdatePostUseCaseImpl } from '../use-cases/update-post-use-case-ipml';
 
 export class PostService {
@@ -13,7 +14,8 @@ export class PostService {
     private updatePostUseCase: UpdatePostUseCaseImpl,
     private deletePostUseCase: DeletePostUseCaseImpl,
     private getPostByIdUseCase: GetPostByIdUseCase,
-    private getPostsUseCase: GetPostsUseCaseImpl
+    private getPostsUseCase: GetPostsUseCaseImpl,
+    private getPostsMetaDataUseCase: GetPostsMetaDataUseCaseImpl
   ) {}
 
   async createPost(data: TCreatePostData): Promise<TPost> {
@@ -34,5 +36,11 @@ export class PostService {
 
   async getPosts(): Promise<TPost[]> {
     return this.getPostsUseCase.execute();
+  }
+
+  async getPostsMetaData(): Promise<{
+    total: number;
+  }> {
+    return this.getPostsMetaDataUseCase.execute();
   }
 }

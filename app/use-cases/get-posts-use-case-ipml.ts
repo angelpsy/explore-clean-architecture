@@ -6,6 +6,6 @@ export class GetPostsUseCaseImpl implements TGetPostsUseCase {
   constructor(private postRepository: TPostRepository) {}
 
   async execute(): Promise<TPost[]> {
-    return await this.postRepository.findByFilter();
+    return (await this.postRepository.findByFilter()).items;
   }
 }

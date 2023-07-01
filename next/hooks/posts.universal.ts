@@ -8,6 +8,7 @@ import { TCreatePostData } from '@/../domain/use-cases/create-post-use-case';
 type TGetPosts = {
   createPost(data: TCreatePostData): Promise<TPost>;
   fetchPosts(): Promise<TPost[]>;
+  fetchMetaDataPosts(): Promise<{total: number}>;
   fetchPostById(id: TPost['id']): Promise<TPost | null>;
   updatePost(id: TPost['id'], data: TUpdatePostData): Promise<TPost>;
 };
@@ -25,20 +26,12 @@ export const usePosts = (): TGetPosts => {
     return await postController.getPosts();
   }
 
-  async function fetchPostById(id: TPost['id']) {
-    return await postController.getPostById(id);
+  async function fetchDataPosts() {
+    return await postController.getPostsMetaData();
   }
 
-  async function updateFirstPost() {
-    const posts = await postController.getPosts();
-    const idFirstPost = posts[0].id;
-    const updatedPost = await postController.updatePost(idFirstPost, {
-      title: 'new title',
-      excerpt: 'new excerpt',
-      content: 'new content',
-    });
-
-    return updatedPost;
+  async function fetchPostById(id: TPost['id']) {
+    return await postController.getPostById(id);
   }
 
   async function updatePost(id: TPost['id'], data: TUpdatePostData) {
@@ -49,6 +42,7 @@ export const usePosts = (): TGetPosts => {
   return {
     createPost,
     fetchPosts,
+    fetchMetaDataPosts: fetchDataPosts,
     fetchPostById,
     updatePost,
   };

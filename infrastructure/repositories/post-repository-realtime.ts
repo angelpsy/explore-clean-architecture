@@ -11,8 +11,18 @@ export class PostRepositoryRealtime implements TPostRepository {
   private items: TPost[] = [];
   private static instance: PostRepositoryRealtime;
   constructor() {}
-  findByFilter(): Promise<TPost[]> {
-    return Promise.resolve(this.items);
+  findByFilter(): Promise<{
+    items: TPost[];
+    metadata: {
+      total: number;
+    };
+  }> {
+    return Promise.resolve({
+      items: this.items,
+      metadata: {
+        total: this.items.length,
+      },
+    });
   }
   findById(id: TPost['id']): Promise<TPost | null> {
     const item = this.items.find((it) => it.id === id) || null;

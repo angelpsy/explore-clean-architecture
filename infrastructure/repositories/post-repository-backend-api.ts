@@ -12,17 +12,24 @@ export class PostRepositoryBackend implements TPostRepository {
   constructor() {}
   async findById(id: TPost['id']): Promise<TPost | null> {
     const res = await fetch(`${BASE_URL}/posts/${id}`, {
-      cache: 'no-store',
+      next: {
+        revalidate: 10,
+      }
     });
     const post = await res.json();
     return post.data.item;
   }
-  async findByFilter(): Promise<TPost[]> {
+  async findByFilter(): Promise<{
+    items: TPost[];
+    metadata: { total: number };
+  }> {
     const res = await fetch(`${BASE_URL}/posts`, {
-      cache: 'no-store',
+      next: {
+        revalidate: 10,
+      }
     });
     const posts = await res.json();
-    return posts.data.items;
+    return posts.data;
   }
   async save(data: TPostRepositorySaveDate): Promise<TPost> {
     const res = await fetch(`${BASE_URL}/posts`, {

@@ -6,6 +6,7 @@ import { CreatePostUseCaseImpl } from '../use-cases/create-post-use-case-ipml';
 import { DeletePostUseCaseImpl } from '../use-cases/delete-post-use-case-ipml';
 import { GetPostByIdUseCase } from '../use-cases/get-post-by-id-use-case-ipml';
 import { GetPostsUseCaseImpl } from '../use-cases/get-posts-use-case-ipml';
+import { GetPostsMetaDataUseCaseImpl } from '../use-cases/get-posts-meta-data-use-case-impl';
 import { UpdatePostUseCaseImpl } from '../use-cases/update-post-use-case-ipml';
 import { PostService } from './post-service';
 
@@ -39,12 +40,14 @@ describe('ServicePost', () => {
     const deletePostUseCaseImpl = new DeletePostUseCaseImpl(repository);
     const getPostByIdPostUseCaseImpl = new GetPostByIdUseCase(repository);
     const getPostsUseCaseImpl = new GetPostsUseCaseImpl(repository);
+    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(repository);
     postService = new PostService(
       createPostUseCaseImpl,
       updatePostUseCaseImpl,
       deletePostUseCaseImpl,
       getPostByIdPostUseCaseImpl,
-      getPostsUseCaseImpl
+      getPostsUseCaseImpl,
+      getPostsMetaDataUseCaseImpl
     );
   });
 

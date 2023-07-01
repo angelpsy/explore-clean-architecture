@@ -4,6 +4,7 @@ import { UpdatePostUseCaseImpl } from '@/../app/use-cases/update-post-use-case-i
 import { DeletePostUseCaseImpl } from '@/../app/use-cases/delete-post-use-case-ipml';
 import { GetPostByIdUseCase } from '@/../app/use-cases/get-post-by-id-use-case-ipml';
 import { GetPostsUseCaseImpl } from '@/../app/use-cases/get-posts-use-case-ipml';
+import { GetPostsMetaDataUseCaseImpl } from '@/../app/use-cases/get-posts-meta-data-use-case-impl';
 import { TPostRepository } from '@/../domain/repositories/post-repository';
 import { TPost } from '@/../domain/entities/post';
 import { TCreatePostData } from '@/../domain/use-cases/create-post-use-case';
@@ -18,13 +19,15 @@ export class PostController {
     const deletePostUseCaseImpl = new DeletePostUseCaseImpl(postRepository);
     const getPostByIdPostUseCaseImpl = new GetPostByIdUseCase(postRepository);
     const getPostsUseCaseImpl = new GetPostsUseCaseImpl(postRepository);
+    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(postRepository);
 
     this.postService = new PostService(
       createPostUseCaseImpl,
       updatePostUseCaseImpl,
       deletePostUseCaseImpl,
       getPostByIdPostUseCaseImpl,
-      getPostsUseCaseImpl
+      getPostsUseCaseImpl,
+      getPostsMetaDataUseCaseImpl,
     );
   }
 
@@ -49,5 +52,11 @@ export class PostController {
 
   async getPosts(): Promise<TPost[]> {
     return this.postService.getPosts();
+  }
+
+  async getPostsMetaData(): Promise<{
+    total: number;
+  }> {
+    return this.postService.getPostsMetaData();
   }
 }

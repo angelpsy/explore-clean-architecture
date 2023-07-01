@@ -1,5 +1,4 @@
 import { TPost } from '../entities/post';
-import { TSingletone } from '../../types/helper';
 
 export type TPostRepositorySaveDate = {
   title: TPost['title'];
@@ -15,7 +14,12 @@ export type TPostRepositoryUpdateDate = {
 
 type TPostRepositoryBase = {
   findById(id: TPost['id']): Promise<TPost | null>;
-  findByFilter(): Promise<TPost[]>;
+  findByFilter(): Promise<{
+    items: TPost[];
+    metadata: {
+      total: number;
+    }
+  }>;
   save(data: TPostRepositorySaveDate): Promise<TPost>;
   update(id: TPost['id'], data: TPostRepositoryUpdateDate): Promise<TPost>;
   delete(id: TPost['id']): Promise<void>;
