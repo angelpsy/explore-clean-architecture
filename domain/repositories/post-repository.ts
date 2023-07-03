@@ -18,7 +18,7 @@ type TPostRepositoryBase = {
     items: TPost[];
     metadata: {
       total: number;
-    }
+    };
   }>;
   save(data: TPostRepositorySaveDate): Promise<TPost>;
   update(id: TPost['id'], data: TPostRepositoryUpdateDate): Promise<TPost>;

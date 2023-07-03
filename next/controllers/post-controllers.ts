@@ -19,7 +19,9 @@ export class PostController {
     const deletePostUseCaseImpl = new DeletePostUseCaseImpl(postRepository);
     const getPostByIdPostUseCaseImpl = new GetPostByIdUseCase(postRepository);
     const getPostsUseCaseImpl = new GetPostsUseCaseImpl(postRepository);
-    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(postRepository);
+    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(
+      postRepository
+    );
 
     this.postService = new PostService(
       createPostUseCaseImpl,
@@ -27,7 +29,7 @@ export class PostController {
       deletePostUseCaseImpl,
       getPostByIdPostUseCaseImpl,
       getPostsUseCaseImpl,
-      getPostsMetaDataUseCaseImpl,
+      getPostsMetaDataUseCaseImpl
     );
   }
 

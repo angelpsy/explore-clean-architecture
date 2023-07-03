@@ -14,7 +14,7 @@ export class PostRepositoryBackend implements TPostRepository {
     const res = await fetch(`${BASE_URL}/posts/${id}`, {
       next: {
         revalidate: 10,
-      }
+      },
     });
     const post = await res.json();
     return post.data.item;
@@ -26,7 +26,7 @@ export class PostRepositoryBackend implements TPostRepository {
     const res = await fetch(`${BASE_URL}/posts`, {
       next: {
         revalidate: 10,
-      }
+      },
     });
     const posts = await res.json();
     return posts.data;

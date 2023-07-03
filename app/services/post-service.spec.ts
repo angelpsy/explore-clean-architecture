@@ -40,7 +40,9 @@ describe('ServicePost', () => {
     const deletePostUseCaseImpl = new DeletePostUseCaseImpl(repository);
     const getPostByIdPostUseCaseImpl = new GetPostByIdUseCase(repository);
     const getPostsUseCaseImpl = new GetPostsUseCaseImpl(repository);
-    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(repository);
+    const getPostsMetaDataUseCaseImpl = new GetPostsMetaDataUseCaseImpl(
+      repository
+    );
     postService = new PostService(
       createPostUseCaseImpl,
       updatePostUseCaseImpl,

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { TPost } from '@/../domain/entities/post';
 import { TPrettify } from '@/../types/helper';
-import { usePosts } from '@/hooks/posts.universal';
+import { getPostControllerInstance } from '@/utilities/post-controller-instance';
 
 export const useEditPost = (data: TPost) => {
   const [post, setPost] = useState<TPrettify<TPost>>(() => {
@@ -12,13 +12,12 @@ export const useEditPost = (data: TPost) => {
     };
   });
 
-  const { updatePost } = usePosts();
   const handlerUpdatePost = async (data: {
     title: TPost['title'];
     content: TPost['content'];
     excerpt: TPost['excerpt'];
   }) => {
-    const updatedPost = await updatePost(post.id, {
+    const updatedPost = await getPostControllerInstance().updatePost(post.id, {
       ...data,
     });
     setPost(updatedPost);

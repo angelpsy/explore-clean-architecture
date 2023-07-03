@@ -1,10 +1,11 @@
+import { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { TPropsClassNames } from '@/types/helpers';
 
-type TProps = React.HTMLAttributes<HTMLButtonElement> &
+type TProps = PropsWithChildren &
+  React.HTMLAttributes<HTMLButtonElement> &
   TPropsClassNames & {
     type?: 'submit' | 'button';
-    children: React.ReactNode;
     onClick?: () => void;
     disabled?: boolean;
     theme?: 'light' | 'dark';

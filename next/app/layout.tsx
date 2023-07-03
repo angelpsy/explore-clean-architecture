@@ -1,4 +1,5 @@
 import './globals.css';
+import { PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import classNames from 'classnames';
@@ -14,11 +15,7 @@ export const metadata = {
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body

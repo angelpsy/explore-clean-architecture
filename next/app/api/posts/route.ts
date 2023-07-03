@@ -2,7 +2,7 @@ import {
   TPostRepositorySaveDate,
   TPostRepositoryUpdateDate,
 } from '@/../domain/repositories/post-repository';
-import { getPostRepositoryRealtimeInstance } from '@/helpers/post-repository-realtime-instance';
+import { getPostRepositoryRealtimeInstance } from '@/utilities/post-repository-realtime-instance';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

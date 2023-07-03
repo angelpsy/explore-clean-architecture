@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { TTODO } from '@/../types/helper';
 import PageView from './view';
-import { usePosts } from '@/hooks/posts.universal';
+import { getPostControllerInstance } from '@/utilities/post-controller-instance';
 
 type TProps = {
   searchParams?: Record<string, TTODO>;
@@ -11,8 +11,7 @@ type TProps = {
 export async function generateMetadata({
   searchParams,
 }: TProps): Promise<Metadata> {
-  const { fetchMetaDataPosts } = usePosts();
-  const { total } = await fetchMetaDataPosts();
+  const { total } = await getPostControllerInstance().getPostsMetaData();
 
   return {
     title: `${total} Posts`,
@@ -22,8 +21,7 @@ export async function generateMetadata({
 export default async function PostsPage(props: TProps) {
   const filter = props?.searchParams || {};
 
-  const { fetchPosts } = usePosts();
-  const items = await fetchPosts();
+  const items = await getPostControllerInstance().getPosts();
 
   return (
     <div>
